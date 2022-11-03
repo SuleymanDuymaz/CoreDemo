@@ -1,0 +1,25 @@
+﻿@model EntityLayer.Concrete.Blog
+
+
+@{
+    ViewData["Title"] = "BlogAdd";
+    Layout = "~/Views/Shared/WriterLayout.cshtml";
+}
+
+<h1>BlogAdd</h1>
+
+@using (Html.BeginForm("AddBlog", "Blog", FormMethod.Post))
+{
+    <div class="form">
+        @Html.Label("Blog Başlığı")
+        @Html.TextBoxFor(p => p.BlogTitle, new { @class = "form-control" })
+        <br />
+
+        @Html.Label("Blog Başlığı")
+        @Html.TextAreaFor(p => p.BlogContent, 20, 3, new { @class = "form-control" })
+
+
+    </div>
+    <button class="btn btn-primary">Ekle</button>
+}
+
