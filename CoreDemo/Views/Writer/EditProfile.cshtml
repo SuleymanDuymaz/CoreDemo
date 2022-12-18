@@ -1,4 +1,4 @@
-﻿@model EntityLayer.Concrete.Writer
+﻿ @model EntityLayer.Concrete.AppUser
 
 @{
     ViewData["Title"] = "EditProfile";
@@ -12,50 +12,35 @@
                 <h4 class="card-title">Profili Düzenle</h4>
                 @*<p class="card-description"> Basic form elements </p>*@
                 <br />
-                @Html.HiddenFor(p=>p.WriterID,new {@class="form-control" })
+                @Html.HiddenFor(p=>p.Id ,new {@class="form-control" })
                 <form class="forms-sample">
                     <div class="form-group">
-                        <label for="exampleInputName1">Name</label>
-                        <input type="text" class="form-control" id="exampleInputName1" name="WriterName" placeholder="Name">
-                        @*@Html.TextBoxFor(p => p.WriterName, new { @class = "form-control" })*@
+                        <label for="exampleInputName1">Ad Soyad</label>
+                        @*<input type="text" class="form-control" id="exampleInputName1" name="NameSurname" placeholder="Name">*@
+                        @Html.TextBoxFor(p => p.NameSurname, new { @class = "form-control" })
+
+                    </div>
+                    <div class="form-group">
+                        <label for="exampleInputName2"> Kullanıcı Adı </label>
+                        <input type="text" name="UserName" class="form-control" placeholder="Kullanıcı Adı" />
 
                     </div>
                     <div class="form-group">
                         <label for="exampleInputEmail3">Email address</label>
-                        <input type="email" class="form-control" id="exampleInputEmail3" name="WriterMail" placeholder="Email">
-                        @*@Html.TextBoxFor(p => p.WriterMail, new { @class = "form-control" })*@
+                        @*<input type="email" class="form-control" id="exampleInputEmail3" name="Email" placeholder="Email">*@
+                        @Html.TextBoxFor(p => p.Email, new { @class = "form-control" })
                     </div>
                     <div class="form-group">
                         <label for="exampleInputPassword4">Password</label>
-                        <input type="password" class="form-control" id="exampleInputPassword4" name="WriterPassword" placeholder="Password">
-                        @*@Html.TextBoxFor(p => p.WriterPassword, new { @class = "form-control" })*@
+                        @*<input type="password" class="form-control" id="exampleInputPassword4" name="WriterPassword" placeholder="Password">*@
+                        @Html.PasswordFor(p => p.PasswordHash, new { @class = "form-control" })
                     </div>
-                    @*<div class="form-group">
-                        <label for="exampleSelectGender">Gender</label>
-                        <select class="form-control" id="exampleSelectGender">
-                            <option>Aktif</option>
-                            <option>Pasif</option>
-                        </select>
-                    </div>*@
-                    @*<div class="form-group">
-                        <label>File upload</label>
-                        <input type="file" name="img[]" class="file-upload-default">
-                        <div class="input-group col-xs-12">
-                            <input type="text" class="form-control file-upload-info" disabled placeholder="Upload Image">
-                            <span class="input-group-append">
-                                <button class="file-upload-browse btn btn-gradient-primary" type="button">Upload</button>
-                            </span>
-                        </div>
-                    </div>*@
+                  
                     <div class="form-group">
                         <label for="exampleInputCity1">Fotoğraf Yolu</label>
                         <input type="text" class="form-control" id="exampleInputCity1" name="WriterImage" placeholder="Location">
                     </div>
-                    <div class="form-group">
-                        <label for="exampleTextarea1">Textarea</label>
-                        <textarea class="form-control" id="exampleTextarea1" name="WriterAbout" rows="4"></textarea>
-                        @Html.TextBoxFor(p => p.WriterAbout, new { @class = "form-control" })
-                    </div>
+                  
                     <button type="submit" class="btn btn-gradient-primary mr-2">Submit</button>
                     <button class="btn btn-light">Cancel</button>
                 </form>

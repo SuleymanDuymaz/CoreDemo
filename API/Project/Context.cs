@@ -13,5 +13,6 @@ namespace API.Project
             optionsBuilder.UseSqlServer("server=DESKTOP-LN6K3G8;database=API;integrated security=true;");
         }
         public DbSet<Product> Products { get; set; }
+        public DbSet<Category> Categories { get; set; }
     }
 }

@@ -6,10 +6,11 @@ using System.Threading.Tasks;
 using BusinessLayer.Concrete;
 using DataAccessLayer.EntityFramework;
 using EntityLayer.Concrete;
-
+using Microsoft.AspNetCore.Authorization;
 
 namespace CoreDemo.Controllers
 {
+    //[AllowAnonymous]
     public class ContactController : Controller
     {
         ContactManager contactManager = new ContactManager(new EfContactDal());
@@ -26,7 +27,7 @@ namespace CoreDemo.Controllers
             contactManager.Add(contact);
             return RedirectToAction("Index","Blog");
 
-            return View();
+      
         }
     }
 }

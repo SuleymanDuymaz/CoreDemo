@@ -2,7 +2,7 @@
 @using X.PagedList.Mvc.Core 
 
 
-@model IPagedList<EntityLayer.Concrete.Category>
+@model IPagedList<EntityLayer.Concrete.Category>    
 
 
 
@@ -33,7 +33,7 @@
         else
         {
                 <td>Pasif</td>
-                <td><a href="#" class="btn btn-primary">Aktif Yap</a></td>
+                <td><a href="/Admin/Category/DeleteCategory/@item.CategoryID/" class="btn btn-primary">Aktif Yap</a></td>
         }
 
     </tr>

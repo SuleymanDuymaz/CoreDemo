@@ -60,7 +60,7 @@ namespace BusinessLayer.Concrete
            
         }
 
-        public void UpdateCategory(Blog blog)
+        public void UpdateBlog(Blog blog)
         {
             _IblogDal.Update(blog); 
         }

@@ -17,9 +17,24 @@ namespace BusinessLayer.Concrete
         {
             _messageDal = messageDal;
         }
-        public List<Message> Get(int id)
+
+        public List<Message> Get(string mail)
         {
-            return _messageDal.List(p=>p.MessageID==id);
+            return _messageDal.List(p=>p.MessageReciever==mail);
+        }
+        public Message GetById(int id)
+        {
+
+            return _messageDal.GetById(id);
+        }
+        public void AddMessage(Message message)
+        {
+            _messageDal.Add(message);
+        }
+
+        public List<Message> SentMessages(string sender)
+        {
+            return _messageDal.List(p=>p.MessageSender==sender);
         }
     }
 }

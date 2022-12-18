@@ -1,4 +1,5 @@
 ﻿using API.Project;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Newtonsoft.Json;
 using System;
@@ -10,6 +11,7 @@ using System.Threading.Tasks;
 
 namespace CoreDemo.Controllers
 {
+    [AllowAnonymous]
     public class ProductController : Controller
     {
 

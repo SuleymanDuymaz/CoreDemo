@@ -1,8 +1,10 @@
 ﻿using BusinessLayer.Concrete;
 using CoreDemo.Models;
+using DataAccessLayer.Concrete;
 using DataAccessLayer.EntityFramework;
 using EntityLayer.Concrete;
 using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
@@ -12,10 +14,17 @@ using System.Threading.Tasks;
 
 namespace CoreDemo.Controllers
 {
-    [Authorize]
+
     public class WriterController : Controller
     {
         WriterManager writerManager = new WriterManager(new EfWriterDal());
+        private readonly UserManager<AppUser> _userManager;
+        Context context = new Context();
+        public WriterController(UserManager<AppUser> userManager)
+        {
+            _userManager = userManager;
+        }
+
         public IActionResult Index()
         {
             return View();
@@ -32,6 +41,11 @@ namespace CoreDemo.Controllers
         }
         public PartialViewResult WriterNavbarPartial()
         {
+            var username = User.Identity.Name;
+            var usermail = context.Users.Where(p => p.UserName == username).Select(k => k.Email).FirstOrDefault();
+            var writerid = context.Writers.Where(p => p.WriterMail == usermail).Select(k => k.WriterID).FirstOrDefault();
+
+            ViewBag.name = username;
             return PartialView();
         }
         public PartialViewResult WriterFooter()
@@ -39,21 +53,51 @@ namespace CoreDemo.Controllers
             return PartialView();
         }
         [HttpGet]
-        [AllowAnonymous]
-        public IActionResult EditProfile(int id)
+   
+        public async Task<IActionResult> EditProfile()
         {
-            Writer writervalue = writerManager.GetById(id);
-            
-            return View(writervalue);
+            //IDENTITY LANINA GORE CALISIR DURUMDA GUNCEL
+
+            //İLK YOL 
+
+
+            //Context context = new Context();
+            //UserManager userManager = new UserManager(new EfUserDal());
+            //var username = User.Identity.Name;
+            //var usermail = context.Users.Where(p => p.UserName == username).Select(k => k.Email).FirstOrDefault();
+            //var id = context.Users.Where(p => p.Email == usermail).Select(k => k.Id).FirstOrDefault();
+            //var values = userManager.GetById(id);
+            //return View(values);
+
+
+            //İLK YOL 
+
+
+            var values = await _userManager.FindByNameAsync(User.Identity.Name);
+
+
+            return View(values);
+
+
+
         }
         [HttpPost]
-        [AllowAnonymous]
-        public IActionResult EditProfile(Writer writer)
+        
+        public  async Task<IActionResult> EditProfile(AppUser appUser)
         {
-            writer.WriterStatus = true;
 
-            writerManager.UpdateWriter(writer);
-            return View();
+            var values = await _userManager.FindByNameAsync(User.Identity.Name);
+            values.NameSurname = appUser.NameSurname;
+            values.Email = appUser.Email;
+            values.UserName = appUser.UserName;
+
+           
+            //values.PasswordHash = _userManager.PasswordHasher.HashPassword(values, appUser.PasswordHash);
+            //password change
+            var result = await _userManager.UpdateAsync(values);
+            return RedirectToAction("Index","Dashboard");
+           
+            
         }
         [HttpGet]
         [AllowAnonymous]
@@ -75,11 +119,6 @@ namespace CoreDemo.Controllers
                 var stream = new FileStream(location, FileMode.Create);
                 addProfileImage.WriterImage.CopyTo(stream);
                 writer.WriterImage = newImageName;
-
-
-               
-
-
 
             }
             writer.WriterMail = addProfileImage.WriterMail;

@@ -18,6 +18,24 @@ namespace API.Migrations
                 .HasAnnotation("ProductVersion", "5.0.9")
                 .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
+            modelBuilder.Entity("API.Project.Category", b =>
+                {
+                    b.Property<int>("CategoryID")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<string>("CategoryName")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<bool>("CategoryStatus")
+                        .HasColumnType("bit");
+
+                    b.HasKey("CategoryID");
+
+                    b.ToTable("Categories");
+                });
+
             modelBuilder.Entity("API.Project.Product", b =>
                 {
                     b.Property<int>("ID")
