@@ -34,15 +34,10 @@ namespace CoreDemo.Controllers
 
             if (ModelState.IsValid)
             {
-
-
                 var result = await _signInManager.PasswordSignInAsync(userSignİnViewModel.UserName, userSignİnViewModel.Password, false, true);
                 if (result.Succeeded)
                 {
-
                     return RedirectToAction("Index", "Dashboard");
-
-
                 }
                 else
                 {

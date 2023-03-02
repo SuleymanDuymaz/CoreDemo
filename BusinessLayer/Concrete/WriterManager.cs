@@ -29,7 +29,7 @@ namespace BusinessLayer.Concrete
 
         public List<Writer> GetAll()
         {
-            return _writerDal.List();
+            return _writerDal.List(p=>p.WriterName=="Betül");
         }
 
         public Writer GetById(int id)

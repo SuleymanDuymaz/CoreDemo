@@ -24,6 +24,12 @@ namespace CoreDemo.Controllers
         {
             _userManager = userManager;
         }
+        public IActionResult FotoGor()
+        {
+            var value=writerManager.GetAll();
+
+            return View(value);
+        }
 
         public IActionResult Index()
         {
