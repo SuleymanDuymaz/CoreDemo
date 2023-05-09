@@ -15,7 +15,7 @@ namespace DataAccessLayer.Concrete
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
-            optionsBuilder.UseSqlServer("server=DESKTOP-LN6K3G8;database=CoreBlogDb;integrated security=true;");
+            optionsBuilder.UseSqlServer("server=LEGION-PC;database=CoreBlogDb;integrated security=true;");
         }
         public DbSet<Writer> Writers { get; set; }
         public DbSet<Contact> Contacts { get; set; }
