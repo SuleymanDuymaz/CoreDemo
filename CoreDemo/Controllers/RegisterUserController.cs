@@ -37,7 +37,7 @@ namespace CoreDemo.Controllers
                     Email = userSignUpViewModel.Mail,
                     UserName = userSignUpViewModel.UserName,
                     NameSurname = userSignUpViewModel.NameSurname
-                };
+                };//create async
                 var result = await _userManager.CreateAsync(appUser, userSignUpViewModel.Password);
                 if (result.Succeeded)
                 {
