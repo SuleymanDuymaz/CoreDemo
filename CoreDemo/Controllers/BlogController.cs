@@ -91,9 +91,7 @@ namespace CoreDemo.Controllers
         public IActionResult DeleteBlog(int id)
         {
             var value = blogManager.GetByID(id);
-           blogManager.Delete(value);
-            
-           
+           blogManager.Delete(value);   
             return RedirectToAction("Index");
         }
         [HttpGet]
