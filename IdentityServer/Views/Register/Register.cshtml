@@ -1,0 +1,57 @@
+﻿@using Identity.Quickstart.Account
+@model RegisterViewModel
+@{
+    var role_list = (List<string>?)ViewData["roles_message"];
+}
+<!-- SweetAlert CSS -->
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
+
+<div>
+    <partial name="_ValidationSummary" />
+
+    <div class="row">
+        <div class="col-sm-12 col-lg-6 offset-lg-3">
+            <div class="card">
+                <div class="card-header">
+                    <h2>Register</h2>
+                </div>
+                <div class="card-body">
+                    <form asp-route="Register">
+                        <input type="hidden" asp-for="ReturnUrl" />
+                        <div class="form-group">
+                            <label asp-for="Email"></label>
+                            <input class="form-control" placeholder="email" asp-for="Email" autofocus required>
+                        </div>
+                        <div class="form-group">
+                            <label asp-for="UserName"></label>
+                            <input class="form-control" placeholder="Username" asp-for="UserName" autofocus>
+                        </div>
+                        <div class="form-group">
+                            <label asp-for="Password"></label>
+                            <input type="password" class="form-control" placeholder="Password" asp-for="Password" autocomplete="off">
+                        </div>
+                        <div class="form-group">
+                            <label asp-for="ConfirmPassword"></label>
+                            <input type="password" class="form-control" placeholder="ConfirmPassword"
+                                   asp-for="ConfirmPassword" id="confirmPassword" autofocus>
+
+                            <span id="passwordMatchError" class="text-danger" style="display: none;">Passwords do not match.</span>
+
+                        </div>
+
+                            <div class="form-group">
+                                <label asp-for="RoleName"></label>
+                                <select asp-for="RoleName" class="form-control"
+                                        asp-items="@(new SelectList(role_list))"></select>
+                            </div>
+                        <button type="submit" id="sub" class="btn btn-primary" name="button" value="register">Register</button>
+
+                    </form>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</div>
+

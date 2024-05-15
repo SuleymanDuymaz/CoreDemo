@@ -1,0 +1,28 @@
+﻿@model EntityLayer.Concrete.Message
+
+@{
+    ViewData["Title"] = "Compose";
+    Layout = "~/Views/Shared/AdminLayout.cshtml";
+}
+
+<h1>Yeni Mesaj Oluşturma Sayfası</h1>
+<br />
+
+@using (Html.BeginForm("Compose", "AdminMessage", FormMethod.Post))
+{
+    @Html.Label("Lütfen Alıcı İsmini Giriniz!")
+    @*@Html.TextBoxFor(x => x.Subject, new { @class = "form-control" })*@
+    <input type="text" asp-for="@Model.MessageReciever" class="form-control" />
+    <br />
+    <br />
+    @Html.Label("Lütfen Konu Giriniz!")
+    @Html.TextBoxFor(p => p.MessageSubject, new { @class = "form-control" })
+    <br />
+    <br />
+    @Html.Label("Lütfen Mesajınızı Giriniz!")
+    @Html.TextAreaFor(p => p.MessageContent, 15, 3, new { @class = "form-control" })
+    <br />
+    <br />
+    <button class="btn btn-info col-12">Mesaj Gönder</button>
+}
+

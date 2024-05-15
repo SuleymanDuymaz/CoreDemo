@@ -1,0 +1,37 @@
+@using System.Diagnostics
+
+@{
+    var version = FileVersionInfo.GetVersionInfo(typeof(IdentityServer4.Hosting.IdentityServerMiddleware).Assembly.Location).ProductVersion.Split('+').First();
+}
+
+<div class="welcome-page">
+    @if (User.Identity.IsAuthenticated)
+    {
+        <h1>Welcome to Identity Server, @User.Identity.Name!</h1>
+        <li>
+            <a href="~/Register/Register" class="btn btn-warning">Yeni Bir Kullanýcý Ekleyin</a>
+      @*       <a href="/IdentityServer/Account/Register" class="btn btn-warning">
+                Register
+            </a> *@
+        </li>
+    }
+    else
+    {
+        <h1>
+            <img src="~/icon.png" class="icon">
+            Welcome to  Identity Server
+        </h1>
+    }
+
+    <ul>
+        @if (!User.Identity.IsAuthenticated)
+        {
+          
+            <li>
+                IdentityServer publishes a
+                <a href="~/Account/Login">Login to  Identity Server</a>
+            </li>
+        }
+     
+    </ul>
+</div>
