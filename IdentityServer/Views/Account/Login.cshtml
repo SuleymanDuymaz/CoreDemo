@@ -53,46 +53,6 @@
             <div class="col-lg-5">
 
 
-                <div>
-                    <div class="card">
-                        <div class="card-header">
-                            <h2>Login With QRCODE</h2>
-                        </div>
-                        <img src="@Url.Action("GetQRImage","QRCode")" alt="" style="height:320px;width:320px" />
-                        <div class="card-body">
-                            <form asp-page="/Account/Login/Index">
-                                <input type="hidden" asp-for="ReturnUrl" />
-
-                                <div class="form-group">
-
-                                    <input type="hidden" class="form-control" id="Username" placeholder="Username" value="" asp-for="Username" autofocus>
-                                </div>
-                                <div class="form-group">
-
-                                    <input type="hidden" class="form-control" id="Password" placeholder="Password" value="" asp-for="Password" autocomplete="off">
-                                    @*     </div>
-                                <div class="form-group">
-                                <input  class="form-control" id="QRString" placeholder="QR Code"  autofocus>
-                                <input type="hidden" class="form-control" id="Qr" placeholder="Qr"  asp-for="Input.Username" autofocus>
-                                </div> *@
-
-                                    <div id="qrcode"></div>
-
-                                    <button class="btn btn-primary" value="login">Login</button>
-                                    <a asp-page="/Login/Index" asp-route-returnUrl="@Model.ReturnUrl" class="btn btn-warning">
-                                        QR Yenile
-                                    </a>
-
-                            </form>
-                            @*     <button class="btn btn-dark" onclick="ConfirmQR()">Confirm</button> *@
-
-                            @*  <button class="btn btn-dark" onclick="ConfirmQR()">Confirm</button> *@
-                            @* <button class="btn btn-dark" id="confirmButton">Login</button> *@
-                        </div>
-
-                    </div>
-
-                </div>
             </div>
         }
 

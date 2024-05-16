@@ -11,7 +11,7 @@ using System.Threading.Tasks;
 
 namespace CoreDemo.Controllers
 {
-    [Authorize(Roles ="admin")]
+    
     public class DashboardController : Controller
     {
         BlogManager blogManager = new BlogManager(new EfBlogDal());

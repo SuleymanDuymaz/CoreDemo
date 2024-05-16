@@ -5,21 +5,10 @@
 }
 
 <!DOCTYPE html>
-<html lang="en">    
-
+<html lang="en">
 <body>
-    
-        <!-- partial:partials/_navbar.html -->
-        
-        <!-- partial -->
-       
-            <!-- partial:partials/_sidebar.html -->
-            
-            <!-- partial -->
     <h1>@ViewBag.v4</h1>
-     <h1>@ViewBag.v5</h1>
-                
-                    
+     <h1>@ViewBag.v5</h1>                 
                     <div class="page-header">
                         <h3 class="page-title">
                             <span class="page-title-icon bg-gradient-primary text-white mr-2">
@@ -71,8 +60,7 @@
                                 </div>
                             </div>
                         </div>
-                    </div>
-                   
+                    </div>                   
                   @await Component.InvokeAsync("BlogListDasboard")
                     <div class="row">
                         <div class="col-12 grid-margin stretch-card">
@@ -114,32 +102,6 @@
                         </div>
                     </div>
                     @await Component.InvokeAsync("CategoryListDashboard")
-            
-                <!-- content-wrapper ends -->
-                <!-- partial:partials/_footer.html -->
-             
-                <!-- partial -->
-            
-            <!-- main-panel ends -->
-        
-        <!-- page-body-wrapper ends -->
-    
-    <!-- container-scroller -->
-    <!-- plugins:js -->
-    <!--<script src="/WriterTheme/assets/vendors/js/vendor.bundle.base.js"></script>-->
-    <!-- endinject -->
-    <!-- Plugin js for this page -->
-    <!--<script src="/WriterTheme/assets/vendors/chart.js/Chart.min.js"></script>-->
-    <!-- End plugin js for this page -->
-    <!-- inject:js -->
-    <!--<script src="/WriterTheme/assets/js/off-canvas.js"></script>
-    <script src="/WriterTheme/assets/js/hoverable-collapse.js"></script>
-    <script src="~/WriterTheme/assets/js/misc.js"></script>-->
-    <!-- endinject -->
-    <!-- Custom js for this page -->
-    <!--<script src="~/WriterTheme/assets/js/dashboard.js"></script>-->
-    @*<script src="~/WriterTheme/assets/js/todolist.js"></script>*@
-    <!-- End custom js for this page -->
 </body>
 </html>
 

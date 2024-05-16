@@ -58,20 +58,6 @@ namespace Is4RoleDemo
                     RedirectUris={ "https://localhost:5002/signin-oidc" },
                     PostLogoutRedirectUris={"https://localhost:5002/signout-callback-oidc" },
                 },
-                    new Client
-                {
-                    ClientId = "jdmtv7067",
-                    ClientSecrets = { new Secret("jdmsecretjdmtv7067".Sha256()) },
-                    AllowedGrantTypes = GrantTypes.Code,
-                    AllowedScopes = { "magic",
-                        IdentityServerConstants.StandardScopes.OpenId,
-                        IdentityServerConstants.StandardScopes.Profile,
-                        IdentityServerConstants.StandardScopes.Email,
-                        JwtClaimTypes.Role
-                    },
-                    RedirectUris={ "https://localhost:7067/signin-oidc" },
-                    PostLogoutRedirectUris={"https://localhost:7149/signout-callback-oidc" },
-                }
             };
     };
 }
