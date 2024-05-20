@@ -19,7 +19,7 @@ namespace CoreDemo.Controllers
         {
             var username = User.Identity.Name;
             var usermail = context.Users.Where(p => p.UserName == username).Select(k => k.Email).FirstOrDefault();
-            var writerid = context.Writers.Where(p => p.WriterMail == usermail).Select(k => k.WriterID).FirstOrDefault();
+            var writerid = context.Writers.Where(p => p.WriterMail == usermail).Select(k => k.Id).FirstOrDefault();
 
 
             var values = messageManager.Get(usermail);

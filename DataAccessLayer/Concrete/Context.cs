@@ -1,4 +1,5 @@
-﻿using EntityLayer.Concrete;
+﻿using EntityLayer.Common;
+using EntityLayer.Concrete;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 using System;
@@ -29,7 +30,22 @@ namespace DataAccessLayer.Concrete
         public DbSet<Notification> Notifications { get; set; }
         public DbSet<Message> Messages { get; set; }
 
-
+        public override int SaveChanges()
+        {
+            //ChangeTracker. Entityler üzerinde yapılan değişiklerin ya da yeni eklenen  verinin yakalanmasını sağlayan
+            //propertiydir.track edilen verileri yakalyıp elde edilir 
+            var datas = ChangeTracker.Entries<BaseEntity>();
+            foreach (var data in datas)
+            {
+                _ = data.State switch
+                {
+                    EntityState.Added => data.Entity.CreatedDate = DateTime.Now,
+                    EntityState.Modified => data.Entity.UpdatedDate = DateTime.Now,
+                    _ => DateTime.UtcNow
+                };
+            }
+            return base.SaveChanges();
+        }
 
 
     }

@@ -10,7 +10,7 @@ using EntityLayer.Concrete;
 
 namespace CoreDemo.Controllers
 {
-    public class CommentController : Controller
+    public class CommentController : Controller 
     {
         CommentManager commentManager = new CommentManager(new EfCommentDal());
         public IActionResult Index()

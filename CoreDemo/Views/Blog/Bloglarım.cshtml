@@ -21,11 +21,11 @@
         <tr>
             @*<td>@item.BlogID</td>*@
             <td>@item.BlogTitle</td>
-            <td>@(((DateTime)item.BlogCreateDate).ToString("d"))</td>
+            <td>@(((DateTime)item.CreatedDate).ToString("d"))</td>
             <td>@item.Category.CategoryName</td>
             <td>@item.BlogStatus</td>
-            <td><a href="/Blog/DeleteBlog/@item.BlogID" class="btn btn-danger">Sil</a></td>
-            <td><a href="/Blog/UpdateBlog/@item.BlogID" class="btn btn-warning">Düzenle</a></td>
+            <td><a href="/Blog/DeleteBlog/@item.Id" class="btn btn-danger">Sil</a></td>
+            <td><a href="/Blog/UpdateBlog/@item.Id" class="btn btn-warning">Düzenle</a></td>
 
 
 

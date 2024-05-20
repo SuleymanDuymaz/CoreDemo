@@ -1,4 +1,5 @@
-﻿using System;
+﻿using EntityLayer.Common;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
@@ -7,10 +8,9 @@ using System.Threading.Tasks;
 
 namespace EntityLayer.Concrete
 {
-    public class Message
+    public class Message : BaseEntity
     {
-        [Key]
-        public int MessageID { get; set; }
+      
         public string MessageSender { get; set; }
         public string MessageReciever { get; set; }
         public string MessageSubject { get; set; }

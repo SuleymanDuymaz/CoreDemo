@@ -23,17 +23,17 @@
                             </div>
                             <div class="product-desc">
                                 <span class="product-price">
-                                    @(((DateTime)item.BlogCreateDate).ToString("dd MMMM yyyy"))
+                                    @(((DateTime)item.CreatedDate).ToString("dd MMMM yyyy"))
                                 </span>
                                 <h4 class="text-muted">@item.Category.CategoryName</h4>
-                                <h3>  <a href="/Blog/BlogReadAll/@item.BlogID" class="product-name"> @item.BlogTitle</a> </h3>
+                                <h3>  <a href="/Blog/BlogReadAll/@item.Id" class="product-name"> @item.BlogTitle</a> </h3>
 
 
                                 <div class="small m-t-xs">
                                     @item.BlogContent.Substring(0, item.BlogContent.Substring(0, 10).LastIndexOf(" "))...
                                 </div>
                                 <div class="m-t text-righ">
-                                    <a href="/Blog/BlogReadAll/@item.BlogID" class="btn btn-xs btn-outline btn-primary">Detaylar <i class="fa fa-long-arrow-right"></i> </a>
+                                    <a href="/Blog/BlogReadAll/@item.Id" class="btn btn-xs btn-outline btn-primary">Detaylar <i class="fa fa-long-arrow-right"></i> </a>
                                 </div>
                             </div>
                         </div>

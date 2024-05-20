@@ -1,4 +1,5 @@
-﻿using System;
+﻿using EntityLayer.Common;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
@@ -7,10 +8,9 @@ using System.Threading.Tasks;
 
 namespace EntityLayer.Concrete
 {
-    public class Writer
+    public class Writer : BaseEntity
     {
-        [Key]
-        public int WriterID { get; set; }
+        
         public string WriterName { get; set; }
         public string WriterAbout { get; set; }
         public string WriterImage { get; set; }

@@ -19,7 +19,7 @@ namespace BusinessLayer.Concrete
         }
         public List<About> Get()
         {
-            return _aboutDal.List(p=>p.AboutID==2);
+            return _aboutDal.List(p=>p.Id==2);
         }
     }
 }

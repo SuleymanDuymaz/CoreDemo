@@ -30,7 +30,7 @@ namespace CoreDemo.Areas.Admin.Controllers
         {
             string username = User.Identity.Name;
             string usermail = context.Users.Where(p => p.UserName == username).Select(k => k.Email).FirstOrDefault();
-            var writerId = context.Writers.Where(p => p.WriterMail == usermail).Select(k => k.WriterID).FirstOrDefault();
+            var writerId = context.Writers.Where(p => p.WriterMail == usermail).Select(k => k.Id).FirstOrDefault();
 
             var values = messageManager.Get(usermail);
 
@@ -40,7 +40,7 @@ namespace CoreDemo.Areas.Admin.Controllers
         {
             var username = User.Identity.Name;
             var sendermail = context.Users.Where(x => x.UserName == username).Select(y => y.Email).FirstOrDefault();
-            var writerID = context.Writers.Where(x => x.WriterMail == sendermail).Select(y => y.WriterID).FirstOrDefault();
+            var writerID = context.Writers.Where(x => x.WriterMail == sendermail).Select(y => y.Id).FirstOrDefault();
             var values = messageManager.SentMessages(sendermail);
 
             return View(values);

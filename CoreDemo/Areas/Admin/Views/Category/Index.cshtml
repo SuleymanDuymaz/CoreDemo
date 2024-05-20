@@ -22,18 +22,18 @@
     @foreach (var item in Model)
     {
     <tr>
-         <td>@item.CategoryID</td>
+         <td>@item.Id</td>
          <td>@item.CategoryName</td>
         @if (item.CategoryStatus==true)
         {
             <td>Aktif</td>
-            <td><a href="/Admin/Category/DeleteCategory/@item.CategoryID/" id="DeleteBtn" onclick="return confirm('Silmek istediğinize emin misiniz?')"
+            <td><a href="/Admin/Category/DeleteCategory/@item.Id/" id="DeleteBtn" onclick="return confirm('Silmek istediğinize emin misiniz?')"
                    class="btn btn-danger">Pasif Yap</a></td>
         }
         else
         {
                 <td>Pasif</td>
-                <td><a href="/Admin/Category/DeleteCategory/@item.CategoryID/" class="btn btn-primary">Aktif Yap</a></td>
+                <td><a href="/Admin/Category/DeleteCategory/@item.Id/" class="btn btn-primary">Aktif Yap</a></td>
         }
 
     </tr>

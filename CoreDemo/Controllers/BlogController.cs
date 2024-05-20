@@ -44,7 +44,7 @@ namespace CoreDemo.Controllers
 
             ViewBag.v1 = usermail;
 
-            var writerid = context.Writers.Where(p => p.WriterMail == usermail).Select(k => k.WriterID).FirstOrDefault();
+            var writerid = context.Writers.Where(p => p.WriterMail == usermail).Select(k => k.Id).FirstOrDefault();
             var value = blogManager.GetListWithCategoryByWriter(writerid);
 
             return View(value);
@@ -59,7 +59,7 @@ namespace CoreDemo.Controllers
                                                   select new SelectListItem
                                                   {
                                                       Text = p.CategoryName,
-                                                      Value = p.CategoryID.ToString()
+                                                      Value = p.Id.ToString()
                                                   }
                                              ).ToList();
             ViewBag.valuecat = valuecategory;
@@ -73,12 +73,12 @@ namespace CoreDemo.Controllers
 
             var username = User.Identity.Name;
             var usermail = context.Users.Where(p => p.UserName == username).Select(k => k.Email).FirstOrDefault();
-            var writerid = context.Writers.Where(p => p.WriterMail == usermail).Select(k => k.WriterID).FirstOrDefault();
+            var writerid = context.Writers.Where(p => p.WriterMail == usermail).Select(k => k.Id).FirstOrDefault();
 
             blog.BlogStatus = true; 
             blog.BlogThumbnailImage = "sd";
             blog.BlogImage = "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQq12Ao1igJHRtHMISM8atngBuBN_ordQS9tg&usqp=CAU";
-            blog.BlogCreateDate= DateTime.Parse(DateTime.Now.ToString());
+            blog.CreatedDate = DateTime.Parse(DateTime.Now.ToString());
             blog.BlogStatus = true;
             
             blog.WriterID = writerid;  
@@ -105,7 +105,7 @@ namespace CoreDemo.Controllers
                                                   select new SelectListItem
                                                   {
                                                       Text = p.CategoryName,
-                                                      Value = p.CategoryID.ToString()
+                                                      Value = p.Id.ToString()
                                                   }
                                              ).ToList();
             ViewBag.valuecat = valuecategory;
@@ -118,11 +118,11 @@ namespace CoreDemo.Controllers
         {
             var username = User.Identity.Name;
             var usermail = context.Users.Where(p => p.UserName == username).Select(k => k.Email).FirstOrDefault();
-            var writerid = context.Writers.Where(p => p.WriterMail == usermail).Select(k => k.WriterID).FirstOrDefault();
+            var writerid = context.Writers.Where(p => p.WriterMail == usermail).Select(k => k.Id).FirstOrDefault();
 
            
             blog.WriterID = writerid;
-            blog.BlogCreateDate = DateTime.Parse(DateTime.Now.ToShortDateString());
+            blog.CreatedDate = DateTime.Parse(DateTime.Now.ToShortDateString());
             blog.BlogStatus = true;
             blogManager.UpdateBlog(blog);
                 
