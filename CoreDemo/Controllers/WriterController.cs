@@ -17,18 +17,12 @@ namespace CoreDemo.Controllers
 
     public class WriterController : Controller
     {
-        WriterManager writerManager = new WriterManager(new EfWriterDal());
-        private readonly UserManager<AppUser> _userManager;
-        Context context = new Context();
-        public WriterController(UserManager<AppUser> userManager)
-        {
-            _userManager = userManager;
-        }
+     
         public IActionResult FotoGor()
         {
-            var value=writerManager.GetAll();
 
-            return View(value);
+
+            return View();
         }
 
         public IActionResult Index()
@@ -45,15 +39,7 @@ namespace CoreDemo.Controllers
             return View();
 
         }
-        public PartialViewResult WriterNavbarPartial()
-        {
-            var username = User.Identity.Name;
-            var usermail = context.Users.Where(p => p.UserName == username).Select(k => k.Email).FirstOrDefault();
-            var writerid = context.Writers.Where(p => p.WriterMail == usermail).Select(k => k.Id).FirstOrDefault();
-
-            ViewBag.name = username;
-            return PartialView();
-        }
+    
         public PartialViewResult WriterFooter()
         {
             return PartialView();
@@ -79,10 +65,10 @@ namespace CoreDemo.Controllers
             //İLK YOL 
 
 
-            var values = await _userManager.FindByNameAsync(User.Identity.Name);
+           
 
 
-            return View(values);
+            return View();
 
 
 
@@ -92,15 +78,11 @@ namespace CoreDemo.Controllers
         public  async Task<IActionResult> EditProfile(AppUser appUser)
         {
 
-            var values = await _userManager.FindByNameAsync(User.Identity.Name);
-            values.Name = appUser.Name;
-            values.Email = appUser.Email;
-            values.UserName = appUser.UserName;
-
+         
            
             //values.PasswordHash = _userManager.PasswordHasher.HashPassword(values, appUser.PasswordHash);
             //password change
-            var result = await _userManager.UpdateAsync(values);
+         
             return RedirectToAction("Index","Dashboard");
            
             
@@ -116,22 +98,8 @@ namespace CoreDemo.Controllers
         [AllowAnonymous]
         public IActionResult AddWriter(AddProfileImage addProfileImage)
         {
-            Writer writer = new Writer();
-            if (addProfileImage.WriterImage!=null)
-            {
-                var extension = Path.GetExtension(addProfileImage.WriterImage.FileName);
-                var newImageName = Guid.NewGuid() + extension;
-                var location = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot/WriterImageFiles/", newImageName);
-                var stream = new FileStream(location, FileMode.Create);
-                addProfileImage.WriterImage.CopyTo(stream);
-                writer.WriterImage = newImageName;
 
-            }
-            writer.WriterMail = addProfileImage.WriterMail;
-            writer.WriterPassword = addProfileImage.WriterPassword;
-            writer.WriterName = addProfileImage.WriterName;
-            writer.WriterStatus = true;
-            writerManager.AddWriter(writer);
+        
             return View();
         }
     }

@@ -15,7 +15,7 @@ using static IdentityModel.OidcConstants;
 
 namespace Identity.IdentityServer.Register
 {
-    [Authorize(Roles ="admin")]
+    //[Authorize(Roles ="admin")]
     public class RegisterController : Controller
     {
         private readonly UserManager<ApplicationUser> _userManager;

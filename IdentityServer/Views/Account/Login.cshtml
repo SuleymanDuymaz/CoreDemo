@@ -3,7 +3,7 @@
 <div class="login-page">
     <div class="lead">
         <h1>Login</h1>
-        <p>Choose how to login</p>
+     @*    <p>Choose how to login</p> *@
     </div>
 
     <partial name="_ValidationSummary" />
@@ -41,8 +41,10 @@
                                     </div>
                                 </div>
                             }
+                          @*   <a href="~/Register/Register?returnUrl=@Model.ReturnUrl" class="btn btn-warning">Yeni Bir Kullanýcý Ekleyin</a> *@
 
-                        
+                            <a asp-controller="Register" asp-action="Register" asp-route-returnUrl="@Model.ReturnUrl" class="btn btn-warning">Kayýt Ol</a>
+
 
                             <button class="btn btn-primary" name="button" value="login">Login</button>
                   
