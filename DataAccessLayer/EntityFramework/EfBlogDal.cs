@@ -24,7 +24,7 @@ namespace DataAccessLayer.EntityFramework
         {
             using (var context = new Context())
             {
-                return context.Blogs.Include(p => p.Category).Where(p => p.WriterID == id).ToList();
+                return context.Blogs.Include(p => p.Category).Where(p => p.AppUserId == id).ToList();
             }
         }
 

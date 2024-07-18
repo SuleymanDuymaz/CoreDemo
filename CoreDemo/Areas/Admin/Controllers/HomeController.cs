@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace CoreDemo.Areas.Admin.Controllers
 {
-    [Area("Admin")]
+    //[Area("Admin")]
     public class HomeController : Controller
     {
         public IActionResult Index()

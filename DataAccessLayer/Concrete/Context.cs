@@ -12,13 +12,11 @@ namespace DataAccessLayer.Concrete
 {
     public class Context : IdentityDbContext<AppUser>
     {
-
-
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
             optionsBuilder.UseSqlServer("server=LEGION-PC;database=CoreBlogDb;integrated security=true;");
         }
-        public DbSet<Writer> Writers { get; set; }
+        //public DbSet<Writer> Writers { get; set; }
         public DbSet<Contact> Contacts { get; set; }
         public DbSet<Comment> Comments { get; set; }
         public DbSet<Category> Categories { get; set; }

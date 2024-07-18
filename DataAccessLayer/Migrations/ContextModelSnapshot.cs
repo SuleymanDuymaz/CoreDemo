@@ -172,7 +172,10 @@ namespace DataAccessLayer.Migrations
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-                    b.Property<string>("AppUserId")
+                    b.Property<int>("AppUserId")
+                        .HasColumnType("int");
+
+                    b.Property<string>("AppUserId1")
                         .HasColumnType("nvarchar(450)");
 
                     b.Property<string>("BlogContent")
@@ -199,16 +202,11 @@ namespace DataAccessLayer.Migrations
                     b.Property<DateTime>("UpdatedDate")
                         .HasColumnType("datetime2");
 
-                    b.Property<int>("WriterID")
-                        .HasColumnType("int");
-
                     b.HasKey("Id");
 
-                    b.HasIndex("AppUserId");
+                    b.HasIndex("AppUserId1");
 
                     b.HasIndex("CategoryID");
-
-                    b.HasIndex("WriterID");
 
                     b.ToTable("Blogs");
                 });
@@ -437,42 +435,6 @@ namespace DataAccessLayer.Migrations
                     b.ToTable("Notifications");
                 });
 
-            modelBuilder.Entity("EntityLayer.Concrete.Writer", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
-
-                    b.Property<DateTime>("CreatedDate")
-                        .HasColumnType("datetime2");
-
-                    b.Property<DateTime>("UpdatedDate")
-                        .HasColumnType("datetime2");
-
-                    b.Property<string>("WriterAbout")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("WriterImage")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("WriterMail")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("WriterName")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("WriterPassword")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<bool>("WriterStatus")
-                        .HasColumnType("bit");
-
-                    b.HasKey("Id");
-
-                    b.ToTable("Writers");
-                });
-
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRole", b =>
                 {
                     b.Property<string>("Id")
@@ -606,9 +568,9 @@ namespace DataAccessLayer.Migrations
 
             modelBuilder.Entity("EntityLayer.Concrete.Blog", b =>
                 {
-                    b.HasOne("EntityLayer.Concrete.AppUser", null)
+                    b.HasOne("EntityLayer.Concrete.AppUser", "AppUser")
                         .WithMany("Blogs")
-                        .HasForeignKey("AppUserId");
+                        .HasForeignKey("AppUserId1");
 
                     b.HasOne("EntityLayer.Concrete.Category", "Category")
                         .WithMany("Blogs")
@@ -616,15 +578,9 @@ namespace DataAccessLayer.Migrations
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("EntityLayer.Concrete.Writer", "Writer")
-                        .WithMany("Blogs")
-                        .HasForeignKey("WriterID")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                    b.Navigation("AppUser");
 
                     b.Navigation("Category");
-
-                    b.Navigation("Writer");
                 });
 
             modelBuilder.Entity("EntityLayer.Concrete.Comment", b =>
@@ -700,11 +656,6 @@ namespace DataAccessLayer.Migrations
                 });
 
             modelBuilder.Entity("EntityLayer.Concrete.Category", b =>
-                {
-                    b.Navigation("Blogs");
-                });
-
-            modelBuilder.Entity("EntityLayer.Concrete.Writer", b =>
                 {
                     b.Navigation("Blogs");
                 });

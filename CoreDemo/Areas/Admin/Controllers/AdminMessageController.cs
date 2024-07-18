@@ -28,22 +28,22 @@ namespace CoreDemo.Areas.Admin.Controllers
         
         public IActionResult Inbox()
         {
-            string username = User.Identity.Name;
-            string usermail = context.Users.Where(p => p.UserName == username).Select(k => k.Email).FirstOrDefault();
-            var writerId = context.Writers.Where(p => p.WriterMail == usermail).Select(k => k.Id).FirstOrDefault();
+            //string username = User.Identity.Name;
+            //string usermail = context.Users.Where(p => p.UserName == username).Select(k => k.Email).FirstOrDefault();
+            //var writerId = context.Writers.Where(p => p.WriterMail == usermail).Select(k => k.Id).FirstOrDefault();
 
-            var values = messageManager.Get(usermail);
+            //var values = messageManager.Get(usermail);
 
-            return View(values);
+            return View(/*values*/);
         }
         public IActionResult Sendbox()
         {
-            var username = User.Identity.Name;
-            var sendermail = context.Users.Where(x => x.UserName == username).Select(y => y.Email).FirstOrDefault();
-            var writerID = context.Writers.Where(x => x.WriterMail == sendermail).Select(y => y.Id).FirstOrDefault();
-            var values = messageManager.SentMessages(sendermail);
+            //var username = User.Identity.Name;
+            //var sendermail = context.Users.Where(x => x.UserName == username).Select(y => y.Email).FirstOrDefault();
+            //var writerID = context.Writers.Where(x => x.WriterMail == sendermail).Select(y => y.Id).FirstOrDefault();
+            //var values = messageManager.SentMessages(sendermail);
 
-            return View(values);
+            return View(/*values*/);
         }
 
         [HttpGet]

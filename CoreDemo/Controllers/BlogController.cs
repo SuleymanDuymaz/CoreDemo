@@ -9,6 +9,9 @@ using EntityLayer.Concrete;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using DataAccessLayer.Concrete;
+using System.Security.Claims;
+using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.Authentication;
 
 namespace CoreDemo.Controllers
 {
@@ -16,7 +19,10 @@ namespace CoreDemo.Controllers
     public class BlogController : Controller
     {
         BlogManager blogManager = new BlogManager(new EfBlogDal());
+   
         Context context = new Context();
+
+  
 
         public IActionResult Index()
         {
@@ -33,21 +39,19 @@ namespace CoreDemo.Controllers
             return View(value);
         }
         [HttpGet]
-        public IActionResult Bloglarım()
+        public async Task<IActionResult> Bloglarım()
         {
-           
-            //var value = blogManager.GetBlogListByWriter(1);
-            // var value = blogManager.GetListWithCategoryByWriter(1);
-
             var username = User.Identity.Name;
+            var accessToken = await HttpContext.GetTokenAsync("access_token");
+           
             var usermail = context.Users.Where(p => p.UserName == username).Select(k => k.Email).FirstOrDefault();
 
             ViewBag.v1 = usermail;
 
-            var writerid = context.Writers.Where(p => p.WriterMail == usermail).Select(k => k.Id).FirstOrDefault();
-            var value = blogManager.GetListWithCategoryByWriter(writerid);
+            //var writerid = context.Writers.Where(p => p.WriterMail == usermail).Select(k => k.Id).FirstOrDefault();
+            //var value = blogManager.GetListWithCategoryByWriter(writerid);
 
-            return View(value);
+            return View(/*value*/);
         }
         [HttpGet]
         public IActionResult NewBlog()
@@ -68,22 +72,23 @@ namespace CoreDemo.Controllers
             return View();
         }
         [HttpPost]
-        public IActionResult NewBlog(Blog blog)
+        public async Task<IActionResult> NewBlog(Blog blog)
         {
 
             var username = User.Identity.Name;
+  
             var usermail = context.Users.Where(p => p.UserName == username).Select(k => k.Email).FirstOrDefault();
-            var writerid = context.Writers.Where(p => p.WriterMail == usermail).Select(k => k.Id).FirstOrDefault();
+            //var writerid = context.Writers.Where(p => p.WriterMail == usermail).Select(k => k.Id).FirstOrDefault();
 
-            blog.BlogStatus = true; 
-            blog.BlogThumbnailImage = "sd";
-            blog.BlogImage = "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQq12Ao1igJHRtHMISM8atngBuBN_ordQS9tg&usqp=CAU";
-            blog.CreatedDate = DateTime.Parse(DateTime.Now.ToString());
-            blog.BlogStatus = true;
-            
-            blog.WriterID = writerid;  
-            blogManager.AddBlog(blog);
-            
+            //blog.BlogStatus = true; 
+            //blog.BlogThumbnailImage = "sd";
+            //blog.BlogImage = "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQq12Ao1igJHRtHMISM8atngBuBN_ordQS9tg&usqp=CAU";
+            //blog.CreatedDate = DateTime.Parse(DateTime.Now.ToString());
+            //blog.BlogStatus = true;
+
+            //blog.WriterID = writerid;  
+            //blogManager.AddBlog(blog);
+
 
 
             return RedirectToAction("Index");
@@ -116,15 +121,15 @@ namespace CoreDemo.Controllers
         [HttpPost]
         public IActionResult UpdateBlog(Blog blog)
         {
-            var username = User.Identity.Name;
-            var usermail = context.Users.Where(p => p.UserName == username).Select(k => k.Email).FirstOrDefault();
-            var writerid = context.Writers.Where(p => p.WriterMail == usermail).Select(k => k.Id).FirstOrDefault();
+            //var username = User.Identity.Name;
+            //var usermail = context.Users.Where(p => p.UserName == username).Select(k => k.Email).FirstOrDefault();
+            //var writerid = context.Writers.Where(p => p.WriterMail == usermail).Select(k => k.Id).FirstOrDefault();
 
            
-            blog.WriterID = writerid;
-            blog.CreatedDate = DateTime.Parse(DateTime.Now.ToShortDateString());
-            blog.BlogStatus = true;
-            blogManager.UpdateBlog(blog);
+            //blog.WriterID = writerid;
+            //blog.CreatedDate = DateTime.Parse(DateTime.Now.ToShortDateString());
+            //blog.BlogStatus = true;
+            //blogManager.UpdateBlog(blog);
                 
             return RedirectToAction("Bloglarım","Blog");
         }
